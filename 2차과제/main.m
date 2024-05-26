@@ -18,3 +18,12 @@ frame = snapshot(cameraObj);
 pause(0.5);
 imshow(frame);
 pause(0.5);
+
+turn(dronethebit,deg2rad(150));
+pause(0.5);
+moveleft(dronethebit,3);
+pause(0.5);
+turn(dronethebit,deg2rad(120));
+pause(0.5);
+
+land(dronethebit);
