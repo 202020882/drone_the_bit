@@ -19,3 +19,26 @@ for i = 1: size(hsv_green, 1)
     end
 
 end
+
+rgb_green = uint8(zeros([size(hsv_green), 3]));
+
+for i = 1:size(hsv_green, 1)
+
+    for j = 1:size(hsv_green, 2)
+
+        if hsv_green(i, j) ~= 0
+
+            rgb_green(i, j, :) = img_rgb(i, j, :);
+
+        end
+
+    end
+
+end
+
+I = rgb_green;
+GI = rgb2gray(I);
+
+BW = imbinarize(GI);
+BW2 = imcomplement(BW);
+BW3 = bwpropfilt(BW2,'perimeter',2);
