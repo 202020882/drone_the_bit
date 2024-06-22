@@ -42,3 +42,17 @@ GI = rgb2gray(I);
 BW = imbinarize(GI);
 BW2 = imcomplement(BW);
 BW3 = bwpropfilt(BW2,'perimeter',2);
+CC = bwconncomp(BW3);
+L = labelmatrix(CC);
+numObjects = max(L(:));
+RGB = label2rgb(L,'gray','k','noshuffle');
+GR=rgb2gray(RGB);
+BW4 = imbinarize(GR);
+
+imshow(BW4); 
+axis on; 
+hold on;
+
+[y, x] = ndgrid(1:size(BW4, 1), 1:size(BW4, 2));
+cen_point = mean([x(logical(BW4)), y(logical(BW4))]);
+plot(cen_point(1), cen_point(2),'b+', 'LineWidth', 3);
