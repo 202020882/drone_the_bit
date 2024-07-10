@@ -36,7 +36,11 @@ ex) 현재 시간이 '2024년 4월 19일 15시'이고 사용자가 50시간 후�
 이번 대회에서 사용한 toolbox는 아래와 같고 대회에서 사용한 matlab 버전은 2023b로 사전 연습하였다. 
 
 ```
-        (사용한 tool box)
+         Computer Vision Toolbox
+
+	 Image Processing Toolbox
+
+	 Ryze Tello Drone Support Package
 ```
 
 ## 대회에서 주어진 조건
@@ -97,7 +101,8 @@ stage 별로 구성을 설명하면 다음과 같다.
 
 ### 원의 중심
 
-<img src="https://github.com/kjsik/example/assets/127501452/3e47641b-0252-410d-ad02-16c0b8498c2f" alt="image" width="400"/>    
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/a94011f2-3889-4d75-86d8-67cd08b9e0a3" alt="image" width="400"/>    
+
 
 [(480,200)에 중점이 존재하는 경우]   
 
@@ -108,7 +113,9 @@ stage 별로 구성을 설명하면 다음과 같다.
 
 ### 최적화된 색깔 인식
    
-(붉은 색 사진), (초록색 사진)   
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/00e786a1-5c70-49bb-9bf2-ca06192cec98" alt="image" width="400"/><img src="https://github.com/202020882/drone_the_bit/assets/127501452/a0fd3073-1aa4-4066-af12-5d21f8b3e844" alt="image" width="400"/><img src="https://github.com/202020882/drone_the_bit/assets/127501452/7c8f571e-4c84-4dd7-b7e4-2cff3cbf8c2f" alt="image" width="400"/>
+
+
 
 코드의 가독성을 높이기 위해 붉은색, 녹색, 보라색을 인식하는 사용자 정의 함수를 정의하였다. ```processImage_R```, ```processImage_G```,```processImeage_P``` 함수를 설정하는 과정에서 가장 중요한 것은 색상의 RGB의 조건을 정확하게 하는 것이었다.    
 우리가 선택한 RGB 구별 방식은 이미지의 R과 G, R과 B, G와 B의 값을 비교하여 어떤 값이 더 큰지, 즉 어느 값이 이미지에서 더 강하게 나타나는지를 비교하는 방식이었다. 이미지를 찍고 RGB를 비교하는 반복적인 과정을 통해 조건의 임계값을 찾았고 이를 토대로 조건을 선택하였다.
