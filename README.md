@@ -607,6 +607,13 @@ fprintf('초록색 네모의 중심 좌표: (%.2f, %.2f)\n', centerX, centerY);
 
 end
 
+```
+
+이는 초록색을 인식하는 함수이다. 이미지를 인식하고 RGB 조건을 통해 초록색으로 인식하지 않는 부분은 검정색으로 바꿔서 저장한다. 초록색으로 인식한 픽셀 수가 0보다 크면 mean 함수를 통해 중심 좌표를 계산한다. 결과를 출력할 때는, 중심 좌표를 초록색의 x자 표시를 통해 표시한다.
+
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/a0fd3073-1aa4-4066-af12-5d21f8b3e844" alt="image" width="400"/>
+
+```
 
 function [centerX, centerY] = processImage_P(frame)
 
@@ -664,3 +671,7 @@ fprintf('보라색 네모의 중심 좌표: (%.2f, %.2f)\n', centerX, centerY);
 
 end
 ```
+
+이는 보라색을 인식하는 함수이다. 이미지를 인식하고 RGB 조건을 통해 보라색으로 인식하지 않는 부분은 검정색으로 바꿔서 저장한다. 보라색으로 인식한 픽셀 수가 0보다 크면 mean 함수를 통해 중심 좌표를 계산한다. 결과를 출력할 때는, 중심 좌표를 초록색의 x자 표시를 통해 표시한다.
+
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/7c8f571e-4c84-4dd7-b7e4-2cff3cbf8c2f" alt="image" width="400"/>
