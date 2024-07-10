@@ -213,7 +213,7 @@ while 1
     end
 ```
   
-드론이 이미지를 찍고 이중 반복 과정을 통해 RGB 조건에 해당하는 픽셀은 흰색으로, 해당하지 않으면 흰색으로 바꾸는 과정이다.    
+드론이 이미지를 찍고 이중 반복 과정을 통해 RGB 조건에 해당하는 픽셀은 흰색으로, 해당하지 않으면 검정색으로 바꾸는 과정이다.    
 이는 푸른색 가림막을 인식하고 푸른색 부분은 흰색으로 나머지 부분은 검정색으로 변환하여 저장한다.
    
 #### 원의 중심과 면적
@@ -241,7 +241,7 @@ while 1
     end
 ```
 
-먼저 이미지를 0과 255 사이의 값을 0과 1로 정규화하고, 그레이 스케일로 바꾼다. 이를 다시 이진화하여 보수하는 과정을 거쳐서 픽셀이 8000이하의 작은 객체는 제거하고 남은 객체의 경계선을 찾는다.
+먼저 이미지를 0과 255 사이의 값을 0과 1로 정규화하고, 그레이 스케일로 바꾼다. 이를 다시 이진화하여 보수하는 과정을 거쳐서 픽셀이 8000 이하의 작은 객체는 제거하고 남은 객체의 경계선을 찾는다.
    
 
 ```
@@ -409,119 +409,16 @@ count = 0;
 turn(drone, deg2rad(130));
 
 ```   
+   
+앞서 전역 변수와 코드에서 찾은 중앙값을 비교하여 33보다 작은 경우, 색을 인식하는 코드를 실행하였다. 그러나 33보다 큰 경우라면 중점을 찾지 못한 것으로 인식하고 드론의 위치를 조정할 필요가 있다. 따라서 이 경우에 추가적인 조건문을 생성하여 중점을 찾는 과정을 반복하도록 설정하였다.   
 
 
 
+(원을 구분하여 찾는 그림)
+
+위의 그림처럼 
 
 
-
-```
-
-% 2stage
-
-
-    % 드론의 이동 결정
-    dis = centroid - center;
-    if (abs(dis(1)) < 40 && abs(dis(2)) < 40) || count == 4
-
-        frame = snapshot(cam); % 색상 감지
-        color_pixel = processImage_G(frame);
-        if color_pixel > 200
-            disp('find_green')
-        end
-
-```
-
-```
-
-        % 드론을 앞으로 이동
-        if 30000 <= area_circle && area_circle < 40000
-            moveforward(drone, 'Distance', 1.55, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(-1);
-        elseif 40000 <= area_circle && area_circle < 50000
-            moveforward(drone, 'Distance', 1.5, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(0);
-        elseif 50000 <= area_circle && area_circle < 60000
-            moveforward(drone, 'Distance', 1.45, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(1);
-        elseif 60000 <= area_circle && area_circle < 70000
-            moveforward(drone, 'Distance', 1.4, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(2);
-        elseif 70000 <= area_circle && area_circle < 85000
-            moveforward(drone, 'Distance', 1.3, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(3);
-        elseif 85000 <= area_circle && area_circle < 100000
-            moveforward(drone, 'Distance', 1.2, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(4);
-        elseif 100000 <= area_circle
-            moveforward(drone, 'Distance', 1.1, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-        else
-            moveforward(drone, 'Distance', 1.6, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(12); % 두번찍힘
-        end
-
-```
-
-```
-
-        % 드론이 원의 중심과 가까울 경우
-    elseif (abs(dis(1)) > 40 && abs(dis(1)) <= 200) || (abs(dis(2)) > 40 && abs(dis(2)) <=200)
-        while 1
-            if dis(1) > 0 && abs(dis(1)) > 40 && dis(2) < 40
-                disp("Moving drone right");
-                moveright(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            elseif dis(1) < 0 && abs(dis(1)) > 40 && dis(2) < 40
-                disp("Moving drone left");
-                moveleft(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            elseif abs(dis(1)) < 40 && dis(2) > 0 && abs(dis(2)) > 40
-                disp("Moving drone down");
-                movedown(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            elseif abs(dis(1)) < 40 && dis(2) < 0 && abs(dis(2)) > 40
-                disp("Moving drone up");
-                moveup(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            elseif dis(1) > 0 && abs(dis(1)) > 40
-                disp("Moving right");
-                moveright(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            elseif dis(1) < 0 && abs(dis(1)) > 40
-                disp("Moving left");
-                moveleft(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            end
-        end
-```
 
 ```
 
@@ -563,148 +460,9 @@ count = 0;
 
 ```
 
+
 ```
 
-% 3stage
-moveforward(drone, 'Distance', 0.5, 'Speed', 0.3);
-pause(1.0);
-
-    % 드론의 이동 결정
-    dis = centroid - center;
-    if (abs(dis(1)) < 40 && abs(dis(2)) < 40) || count == 4
-
-        frame = snapshot(cam); % 색상 감지
-        color_pixel = processImage_P(frame);
-        if color_pixel > 200
-            disp('find_purple')
-        end
-
-        % 드론을 앞으로 이동
-        if 30000 <= area_circle && area_circle < 40000
-            moveforward(drone, 'Distance', 1.8, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(-1);
-        elseif 40000 <= area_circle && area_circle < 50000
-            moveforward(drone, 'Distance', 1.7, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(0);
-        elseif 50000 <= area_circle && area_circle < 60000
-            moveforward(drone, 'Distance', 1.6, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(1);
-        elseif 60000 <= area_circle && area_circle < 70000
-            moveforward(drone, 'Distance', 1.5, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(2);
-        elseif 70000 <= area_circle && area_circle < 85000
-            moveforward(drone, 'Distance', 1.4, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(3);
-        elseif 85000 <= area_circle && area_circle < 100000
-            moveforward(drone, 'Distance', 1.2, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(4);
-        elseif 100000 <= area_circle && area_circle < 130000
-            moveforward(drone, 'Distance', 1.0, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(5);
-        elseif 130000 <= area_circle
-            moveforward(drone, 'Distance', 0.8, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(6);
-        else
-            moveforward(drone, 'Distance', 1.8, 'Speed', 0.7);
-            count_go = 1;
-            pause(1.0);
-            disp(12);
-        end
-
-    elseif (abs(dis(1)) > 40 && abs(dis(1)) <= 200) || (abs(dis(2)) > 40 && abs(dis(2)) <=200)
-        while 1
-            if dis(1) > 0 && abs(dis(1)) > 40 && dis(2) < 40
-                disp("Moving drone right");
-                moveright(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            elseif dis(1) < 0 && abs(dis(1)) > 40 && dis(2) < 40
-                disp("Moving drone left");
-                moveleft(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            elseif abs(dis(1)) < 40 && dis(2) > 0 && abs(dis(2)) > 40
-                disp("Moving drone down");
-                movedown(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            elseif abs(dis(1)) < 40 && dis(2) < 0 && abs(dis(2)) > 40
-                disp("Moving drone up");
-                moveup(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            elseif dis(1) > 0 && abs(dis(1)) > 40
-                disp("Moving right");
-                moveright(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            elseif dis(1) < 0 && abs(dis(1)) > 40
-                disp("Moving left");
-                moveleft(drone, 'Distance', 0.2, 'Speed', 0.2);
-                count = count + 1;
-                pause(1.0);
-                break;
-            end
-        end
-
-
-        % 드론이 원의 중심과 멀리 떨어져 있을 경우
-    elseif dis(1) > 0 && abs(dis(1)) > 200 && dis(2) < 40
-        disp("Moving drone more right");
-        moveright(drone, 'Distance', 0.4, 'Speed', 0.3);
-        pause(1.0);
-    elseif dis(1) < 0 && abs(dis(1)) > 200 && dis(2) < 40
-        disp("Moving drone more left");
-        moveleft(drone, 'Distance', 0.4, 'Speed', 0.3);
-        pause(1.0);
-    elseif abs(dis(1)) < 40 && dis(2) > 0 && abs(dis(2)) > 200
-        disp("Moving drone more down");
-        movedown(drone, 'Distance', 0.4, 'Speed', 0.3);
-        pause(1.0);
-    elseif abs(dis(1)) < 40 && dis(2) < 0 && abs(dis(2)) > 200
-        disp("Moving drone more up");
-        moveup(drone, 'Distance', 0.4, 'Speed', 0.3);
-        pause(1.0);
-    elseif dis(1) > 0 && abs(dis(1)) > 200
-        disp("Moving right");
-        moveright(drone, 'Distance', 0.4, 'Speed', 0.3);
-        pause(1.0);
-    elseif dis(1) < 0 && abs(dis(1)) > 200
-        disp("Moving left");
-        moveleft(drone, 'Distance', 0.4, 'Speed', 0.3);
-        pause(1.0);
-    end
-
-    if count_go == 1
-        break;
-    end
-end
-
-turn(drone, deg2rad(215));
-stage_pixel = 0;
-count_go = 0;
-count = 0;
 
 % 4stage
 moveforward(drone, 'Distance', 1.1, 'Speed', 0.7);
