@@ -113,7 +113,7 @@ stage 별로 구성을 설명하면 다음과 같다.
 
 ### 최적화된 색깔 인식
    
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/00e786a1-5c70-49bb-9bf2-ca06192cec98" alt="image" width="400"/><img src="https://github.com/202020882/drone_the_bit/assets/127501452/a0fd3073-1aa4-4066-af12-5d21f8b3e844" alt="image" width="400"/><img src="https://github.com/202020882/drone_the_bit/assets/127501452/7c8f571e-4c84-4dd7-b7e4-2cff3cbf8c2f" alt="image" width="400"/>
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/00e786a1-5c70-49bb-9bf2-ca06192cec98" alt="image" width="300"/><img src="https://github.com/202020882/drone_the_bit/assets/127501452/a0fd3073-1aa4-4066-af12-5d21f8b3e844" alt="image" width="300"/><img src="https://github.com/202020882/drone_the_bit/assets/127501452/7c8f571e-4c84-4dd7-b7e4-2cff3cbf8c2f" alt="image" width="300"/>
 
 
 
