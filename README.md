@@ -337,7 +337,7 @@ while 1
             disp(6);
         elseif 160000 <= area_meas
             moveforward(drone, 'Distance', 3.1, 'Speed', 0.7);
-            count_forward = 1;
+            count_go = 1;
             pause(1.0);
             disp(7);
         else
@@ -348,7 +348,12 @@ while 1
         end
 
 ```
-
+   
+   
+위에서 언급한 것처럼 드론이 인식한 원의 면적에 따라 가림막과 드론 사이의 거리가 다르기 때문에, 조건문을 통해 드론이 가야하는 거리를 다르게 설정하였다. 드론이 앞으로 이동한 경우, ```count_go```변수를 1로 초기화하였고 이는 앞으로 간 것을 판단하는 변수이다.
+   
+   
+   
 ```
     else
         while 1
@@ -403,7 +408,13 @@ count_go = 0;
 count = 0;
 turn(drone, deg2rad(130));
 
-```
+```   
+
+
+
+
+
+
 ```
 
 % 2stage
