@@ -54,8 +54,8 @@ ex) 현재 시간이 '2024년 4월 19일 15시'이고 사용자가 50시간 후�
 
 아래 사진은 위의 사진과 유사한 규격의 연습장을 실제로 구성하여 진행한 사진이다.
 
-<img src="https://github.com/kjsik/example/assets/127501452/7d5ce1ac-8648-4be4-96f9-0b12d2f79f32" alt="image" width="300"/>
-     
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/4c1eb50d-28dd-4a66-82a0-9906a7f55b2f" alt="image" width="300"/>
+    
     
     
     
@@ -80,11 +80,13 @@ stage 별로 구성을 설명하면 다음과 같다.
 ## 최적화된 원의 면적 계산 및 중심 인식
 ### 원의 면적
 
-<img src="https://github.com/kjsik/example/assets/127501452/3e47641b-0252-410d-ad02-16c0b8498c2f" alt="image" width="300"/>      
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/89558be3-c4db-49a6-a729-df47169b2540" alt="image" width="300"/>
+
 
 [1번 case가 실행된 경우의 사진]   
 
-<img src="https://github.com/kjsik/example/assets/127501452/a1ffe840-41a8-4039-8328-1befb30d0a20" alt="image" width="300"/>     
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/86e071f0-cd4a-42d4-ab9c-cc55c40fcd89" width="300"/>   
+
 
 [4번 case가 실행된 경우의 사진] 
 
