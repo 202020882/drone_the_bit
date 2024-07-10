@@ -65,13 +65,9 @@ stage 별로 구성을 설명하면 다음과 같다.
 ## 최적화된 원의 면적 계산 및 중심 인식
 ### 원의 면적
 
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/86e071f0-cd4a-42d4-ab9c-cc55c40fcd89" width="300"/>   
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/86e071f0-cd4a-42d4-ab9c-cc55c40fcd89" width="300"/> <img src="https://github.com/202020882/drone_the_bit/assets/127501452/89558be3-c4db-49a6-a729-df47169b2540" alt="image" width="300"/>
 
-
-[1번 case가 실행된 경우의 사진] <img src="https://github.com/202020882/drone_the_bit/assets/127501452/89558be3-c4db-49a6-a729-df47169b2540" alt="image" width="300"/>
-
-
-[4번 case가 실행된 경우의 사진] 
+[1번 case가 실행된 경우의 사진]	[4번 case가 실행된 경우의 사진] 
 
    
 반복적인 주행 연습 결과를 통해, 드론이 원의 이미지를 찍었을 때, 적절한 크기의 가림막의 원이 존재하는 적정 거리가 존재한다. 이는 드론이 측정한 원의 면적이 작을 수록, 드론은 원으로부터 멀리 떨어져 있고 반대로 원의 면적이 클수록, 드론이 원으로부터 가까이 존재하는 것을 의미한다.   
@@ -369,10 +365,10 @@ while 1
    
 위에서 언급한 것처럼 드론이 인식한 원의 면적에 따라 가림막과 드론 사이의 거리가 다르기 때문에, 조건문을 통해 드론이 가야하는 거리를 다르게 설정하였다. 드론이 앞으로 이동한 경우, ```count_go```변수를 1로 초기화하였고 이는 앞으로 간 것을 판단하는 변수이다.
    
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/258b4ce7-0b69-4190-a143-7571e1c34864" alt="image" width="200"/>[1 stage의 4번째 case] <img src="https://github.com/202020882/drone_the_bit/assets/127501452/5e510d81-1c12-4ff8-9ced-e3061a35096a" alt="image" width="200"/>[2 stage의 -1번째 case]
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/258b4ce7-0b69-4190-a143-7571e1c34864" alt="image" width="300"/>[1 stage의 4번째 case] <img src="https://github.com/202020882/drone_the_bit/assets/127501452/5e510d81-1c12-4ff8-9ced-e3061a35096a" alt="image" width="300"/>[2 stage의 -1번째 case]
 
 
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/4999d91f-2270-4961-b869-516c9a05195f" alt="image" width="200"/>[3 stage의 -1번째 case] <img src="https://github.com/202020882/drone_the_bit/assets/127501452/4e144497-75e3-4cf8-bd45-1b903414caf8" alt="image" width="200"/>[3 stage의 -1번째 case]
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/4999d91f-2270-4961-b869-516c9a05195f" alt="image" width="300"/>[3 stage의 -1번째 case] <img src="https://github.com/202020882/drone_the_bit/assets/127501452/4e144497-75e3-4cf8-bd45-1b903414caf8" alt="image" width="300"/>[3 stage의 -1번째 case]
 
 
 
