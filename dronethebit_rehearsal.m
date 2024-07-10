@@ -96,7 +96,7 @@ while 1
             moveforward(drone, 'Distance', 1.5, 'Speed', 0.7);
             count_go = 1;
             pause(0.5);
-            disp(2); %fix 딱 좋은 거리
+            disp(2);
         elseif 70000 <= area_circle && area_circle < 85000
             moveforward(drone, 'Distance', 1.4, 'Speed', 0.7);
             count_go = 1;
@@ -190,15 +190,15 @@ while abs(dis_c(1)) > 30
         count_a = count_a - 1;
     end
 end
-moveforward(drone, 'Distance', 2.3, 'Speed', 1.0);
+moveforward(drone, 'Distance', 1.9, 'Speed', 1.0);
 pause(0.5);
 
 count_go = 0;
 count = 0;
-turn(drone, deg2rad(130 - count_a * 5));
+turn(drone, deg2rad(130 - (count_a * 5)));
 
 % 2stage
-moveforward(drone, 'Distance', 2.6, 'Speed', 0.7);
+moveforward(drone, 'Distance', 2.7, 'Speed', 0.7);
 pause(1.0);
 
 while 1
@@ -266,42 +266,58 @@ while 1
 
 
         % 드론을 앞으로 이동
-        if 30000 <= area_circle && area_circle < 40000
-            moveforward(drone, 'Distance', 1.55, 'Speed', 0.7);
+        if 5000 <= area_circle && area_circle < 10000
+            moveforward(drone, 'Distance', 2, 'Speed', 0.7);
+            count_go = 1;
+            pause(1.0);
+            disp(-3);
+        elseif 10000 <= area_circle && area_circle < 20000
+            moveforward(drone, 'Distance', 1.95, 'Speed', 0.7);
+            count_go = 1;
+            pause(1.0);
+            disp(-3);
+        elseif 20000 <= area_circle && area_circle < 30000
+            moveforward(drone, 'Distance', 1.9, 'Speed', 0.7);
+            count_go = 1;
+            pause(1.0);
+            disp(-1);
+        elseif 30000 <= area_circle && area_circle < 40000
+            moveforward(drone, 'Distance', 1.85, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(-1);
         elseif 40000 <= area_circle && area_circle < 50000
-            moveforward(drone, 'Distance', 1.5, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.8, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(0);
         elseif 50000 <= area_circle && area_circle < 60000
-            moveforward(drone, 'Distance', 1.45, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.75, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(1);
         elseif 60000 <= area_circle && area_circle < 70000
-            moveforward(drone, 'Distance', 1.4, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.7, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(2);
         elseif 70000 <= area_circle && area_circle < 85000
-            moveforward(drone, 'Distance', 1.3, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.65, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(3);
         elseif 85000 <= area_circle && area_circle < 100000
-            moveforward(drone, 'Distance', 1.2, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.6, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(4);
         elseif 100000 <= area_circle
-            moveforward(drone, 'Distance', 1.1, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.55, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
+            disp(5);
         else
-            moveforward(drone, 'Distance', 1.6, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 2.05, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(12); % 두번찍힘
@@ -402,7 +418,7 @@ while abs(dis_c(1)) > 30
     end
 end
 pause(1.5);
-turn(drone, deg2rad(-130 - count_a * 5));
+turn(drone, deg2rad(-130 - (count_a * 5)));
 count_go = 0;
 count = 0;
 
@@ -474,48 +490,58 @@ while 1
     if (abs(dis(1)) < 40 && abs(dis(2)) < 40) || count == 4
 
         % 드론을 앞으로 이동
-        if 30000 <= area_circle && area_circle < 40000
+        if 5000 <= area_circle && area_circle < 10000
+            moveforward(drone, 'Distance', 1.9, 'Speed', 0.7);
+            count_go = 1;
+            pause(1.0);
+            disp(-3);
+        elseif 20000 <= area_circle && area_circle < 30000
+            moveforward(drone, 'Distance', 1.85, 'Speed', 0.7);
+            count_go = 1;
+            pause(1.0);
+            disp(-2);
+        elseif 30000 <= area_circle && area_circle < 40000
             moveforward(drone, 'Distance', 1.8, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(-1);
         elseif 40000 <= area_circle && area_circle < 50000
-            moveforward(drone, 'Distance', 1.7, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.75, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(0);
         elseif 50000 <= area_circle && area_circle < 60000
-            moveforward(drone, 'Distance', 1.6, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.7, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(1);
         elseif 60000 <= area_circle && area_circle < 70000
-            moveforward(drone, 'Distance', 1.5, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.65, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(2);
         elseif 70000 <= area_circle && area_circle < 85000
-            moveforward(drone, 'Distance', 1.4, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.6, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(3);
         elseif 85000 <= area_circle && area_circle < 100000
-            moveforward(drone, 'Distance', 1.2, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.55, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(4);
         elseif 100000 <= area_circle && area_circle < 130000
-            moveforward(drone, 'Distance', 1.0, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.5, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(5);
         elseif 130000 <= area_circle
-            moveforward(drone, 'Distance', 0.8, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.4, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(6);
         else
-            moveforward(drone, 'Distance', 1.8, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.95, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(12);
@@ -620,6 +646,22 @@ count_go = 0;
 count = 0;
 
 % 4stage
+frame = snapshot(cam);
+colorcenter = processImage_R_a(frame);
+dis_c = colorcenter - center;
+count_a = 0;
+while abs(dis_c(1)) > 30
+    frame = snapshot(cam);
+    colorcenter = processImage_R_a(frame);
+    dis_c = colorcenter - center;
+    if dis_c(1)>0
+        turn(drone, deg2rad(5));
+        count_a = count_a + 1;
+    else
+        turn(drone, deg2rad(-5));
+        count_a = count_a - 1;
+    end
+end
 moveforward(drone, 'Distance', 1.1, 'Speed', 0.7);
 
 while 1
@@ -683,36 +725,36 @@ while 1
 
     % 드론의 이동 결정
     dis = centroid - center;
-    if (abs(dis(1)) < 33 && abs(dis(2)) < 33) || count == 4
+    if (abs(dis(1)) < 33 && abs(dis(2)) < 33) || count == 5
 
         % 드론을 앞으로 이동
         if 30000 <= area_circle && area_circle < 40000
-            moveforward(drone, 'Distance', 1.75, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.6, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(-1);
         elseif 40000 <= area_circle && area_circle < 50000
-            moveforward(drone, 'Distance', 1.7, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.55, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(0);
         elseif 50000 <= area_circle && area_circle < 60000
-            moveforward(drone, 'Distance', 1.65, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.5, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(1);
         elseif 60000 <= area_circle && area_circle < 70000
-            moveforward(drone, 'Distance', 1.6, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.45, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(2);
         elseif 70000 <= area_circle && area_circle < 85000
-            moveforward(drone, 'Distance', 1.55, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.4, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(3);
         elseif 85000 <= area_circle && area_circle < 100000
-            moveforward(drone, 'Distance', 1.5, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.35, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(4);
@@ -722,22 +764,22 @@ while 1
             pause(1.0);
             disp(5);
         elseif 130000 <= area_circle && area_circle < 160000
-            moveforward(drone, 'Distance', 1.3, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.35, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(6);
         elseif 160000 <= area_circle && area_circle < 200000
-            moveforward(drone, 'Distance', 1.2, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.3, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(7);
         elseif 200000 <= area_circle
-            moveforward(drone, 'Distance', 1.1, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.25, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(8);
         else
-            moveforward(drone, 'Distance', 1.8, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.65, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(12);
@@ -877,18 +919,7 @@ if redPixelCount > 0
 else
     centerX = NaN;
     centerY = NaN;
-    disp('빨간색 네모를 찾을 수 없습니다.');
 end
-
-% 결과 시각화
-figure;
-imshow(uint8(img3));
-hold on;
-if ~isnan(centerX) && ~isnan(centerY)
-    plot(centerX, centerY, 'g+', 'MarkerSize', 30, 'LineWidth', 2);
-    title('빨간색 네모의 중심 좌표');
-end
-hold off;
 
 % 중심 좌표 출력
 fprintf('빨간색 네모의 중심 좌표: (%.2f, %.2f)\n', centerX, centerY);
@@ -935,18 +966,7 @@ if greenPixelCount > 0
 else
     centerX = NaN;
     centerY = NaN;
-    disp('초록색 네모를 찾을 수 없습니다.');
 end
-
-% 결과 시각화
-figure;
-imshow(uint8(img3));
-hold on;
-if ~isnan(centerX) && ~isnan(centerY)
-    plot(centerX, centerY, 'r+', 'MarkerSize', 30, 'LineWidth', 2);
-    title('초록색 네모의 중심 좌표');
-end
-hold off;
 
 % 중심 좌표 출력
 fprintf('초록색 네모의 중심 좌표: (%.2f, %.2f)\n', centerX, centerY);
@@ -991,18 +1011,7 @@ if purplePixelCount > 0
 else
     centerX = NaN;
     centerY = NaN;
-    disp('보라색 네모를 찾을 수 없습니다.');
 end
-
-% 결과 시각화
-figure;
-imshow(uint8(img3));
-hold on;
-if ~isnan(centerX) && ~isnan(centerY)
-    plot(centerX, centerY, 'g+', 'MarkerSize', 30, 'LineWidth', 2);
-    title('보라색 네모의 중심 좌표');
-end
-hold off;
 
 % 중심 좌표 출력
 fprintf('보라색 네모의 중심 좌표: (%.2f, %.2f)\n', centerX, centerY);
