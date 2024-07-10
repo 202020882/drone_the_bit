@@ -117,7 +117,7 @@ stage 별로 구성을 설명하면 다음과 같다.
 
 
 
-코드의 가독성을 높이기 위해 붉은색, 녹색, 보라색을 인식하는 사용자 정의 함수를 정의하였다. ```processImage_R```, ```processImage_G```,```processImeage_P``` 함수를 설정하는 과정에서 가장 중요한 것은 색상의 RGB의 조건을 정확하게 하는 것이었다.    
+코드의 가독성을 높이기 위해 붉은색, 녹색, 보라색을 인식하는 사용자 정의 함수를 선언하였다. ```processImage_R```, ```processImage_G```,```processImeage_P``` 함수를 설정하는 과정에서 가장 중요한 것은 색상의 RGB의 조건을 정확하게 하는 것이었다.    
 우리가 선택한 RGB 구별 방식은 이미지의 R과 G, R과 B, G와 B의 값을 비교하여 어떤 값이 더 큰지, 즉 어느 값이 이미지에서 더 강하게 나타나는지를 비교하는 방식이었다. 이미지를 찍고 RGB를 비교하는 반복적인 과정을 통해 조건의 임계값을 찾았고 이를 토대로 조건을 선택하였다.
 
 ### 드론 객체의 안정성 유지
@@ -129,6 +129,7 @@ stage 별로 구성을 설명하면 다음과 같다.
 
 ### 수학적인 각도 분석
 
+아래에서 설명하겠지만 색상을 인식하는 과정에서 각도가 틀어진 경우가 존재한다. 이 경우를 대비하여 드론이 색깔의 중심을 파악하고 기준으로 설정한 값과 비교하여 각도를 조절할 수 있도록 설계하였다. 기준 중심과 구한 색깔 중심 측정 값의 차가 양수라면 드론이 색깔의 좌측을 바라보고 있는 것이므로 드론이 우측으로 회전하도록 설계하였다. 회전한 횟수를 측정하여 색깔의 중심을 바라보고 다음 stage로 넘어가는 각도를 조정할 수 있도록 설계하였다. 
 
    
 위에서 언급한 것과 같이 stage마다 진행 방식이 다르기 때문에, stage별로 다른 전략도 존재한다.   
@@ -287,20 +288,7 @@ while 1
 
     % 드론의 이동 결정
     dis = centroid - center;
-    if (abs(dis(1)) < 33 && abs(dis(2)) < 33) || count == 4
-
-        frame = snapshot(cam); % 색상 감지
-        color_pixel = processImage_R(frame);
-        if color_pixel > 150
-            disp('find_red')
-        end
-
-```
-
-코드 초반에 선언한 전역 변수 값과 위에서 구한 구한 중심과의 차이가 33보다 작은 경우, 붉은 색의 픽셀을 반환하는 사용자 정의 함수를 실행시키고 반환 받은 값이 150보다 크다면 색을 인식하였다고 판단한다.    
-
-
-```
+    if (abs(dis(1)) < 33 && abs(dis(2)) < 33) || count == 3
 
         % 드론을 앞으로 이동
         if 30000 <= area_circle && area_circle < 40000
@@ -491,7 +479,7 @@ count_go = 0;
 count = 0;
 
 ```
-
+색깔의 앞까지 이동하고 색깔을 인식하고 색깔의 중점을 반환하는 사용자 정의 함수를 실행하여 앞서 전역 변수로 설정한 기준 중심과 비교한다. ```dis_c(1)```이 양수이면 드론이 색깔의 좌측을 바라보고 있는 것이므로 
 
 ```
 
@@ -773,40 +761,20 @@ fprintf('빨간색 네모의 중심 좌표: (%.2f, %.2f)\n', centerX, centerY);
 
 end
 
-function color_pixel = processImage_R(frame)
+
+% 초록색 이미지 처리 함수
+function [centerX, centerY] = processImage_G(frame)
+
+% 이미지 읽기
 img = double(frame);
 [R, C, X] = size(img);
 img3 = zeros(R, C, X);  % img3 변수를 초기화
 
-color_pixel = 0;  % stage_pixel을 초기화
+% 초록색 픽셀의 개수를 초기화
+greenPixelCount = 0;
 
-for i = 1:R
-    for j = 1:C
-        % 빨간색이 아닌 색들을 제거하기 위한 조건
-        if img(i,j,1) - img(i,j,2) >= 55 && img(i,j,1) - img(i,j,3) >= 10 && img(i,j,2) - img(i,j,3) <= 30
-            % 빨간색으로 판단되는 경우
-            img3(i, j, 1) = 255;
-            img3(i, j, 2) = 0;
-            img3(i, j, 3) = 0;
-            color_pixel = color_pixel + 1;  % 빨간색 픽셀의 개수를 증가
-        else
-            img3(i, j, 1) = 0;
-            img3(i, j, 2) = 0;
-            img3(i, j, 3) = 0;
-        end
-    end
-end
-figure(2);
-imshow(img3);
-disp(color_pixel);
-end
-
-function color_pixel = processImage_G(frame)
-img = double(frame);
-[R, C, X] = size(img);
-img3 = zeros(R, C, X);  % img3 변수를 초기화
-
-color_pixel = 0;  % stage_pixel을 초기화
+% 초록색 픽셀의 좌표를 저장할 배열
+greenPixels = [];
 
 for i = 1:R
     for j = 1:C
@@ -816,7 +784,8 @@ for i = 1:R
             img3(i, j, 1) = 0;
             img3(i, j, 2) = 255;
             img3(i, j, 3) = 0;
-            color_pixel = color_pixel + 1;
+            greenPixelCount = greenPixelCount + 1;
+            greenPixels = [greenPixels; [i, j]];
         else
             img3(i, j, 1) = 0;
             img3(i, j, 2) = 0;
@@ -824,27 +793,56 @@ for i = 1:R
         end
     end
 end
-figure(3);
-imshow(img3);
-disp(color_pixel);
+
+% 초록색 픽셀의 중심 좌표 계산
+if greenPixelCount > 0
+    centerX = mean(greenPixels(:, 2));
+    centerY = mean(greenPixels(:, 1));
+else
+    centerX = NaN;
+    centerY = NaN;
+    disp('초록색 네모를 찾을 수 없습니다.');
 end
 
-function color_pixel = processImage_P(frame)
+% 결과 시각화
+figure;
+imshow(uint8(img3));
+hold on;
+if ~isnan(centerX) && ~isnan(centerY)
+    plot(centerX, centerY, 'r+', 'MarkerSize', 30, 'LineWidth', 2);
+    title('초록색 네모의 중심 좌표');
+end
+hold off;
+
+% 중심 좌표 출력
+fprintf('초록색 네모의 중심 좌표: (%.2f, %.2f)\n', centerX, centerY);
+
+
+end
+
+
+function [centerX, centerY] = processImage_P(frame)
+
 img = double(frame);
 [R, C, X] = size(img);
 img3 = zeros(R, C, X);  % img3 변수를 초기화
 
-color_pixel = 0;  % stage_pixel을 초기화
+% 보라색 픽셀의 개수를 초기화
+purplePixelCount = 0;
+
+% 보라색 픽셀의 좌표를 저장할 배열
+purplePixels = [];
 
 for i = 1:R
     for j = 1:C
         % 보라색이 아닌 색들을 제거하기 위한 조건
-        if img(i,j,1) - img(i,j,2) < 11 && img(i,j,1) - img(i,j,3) > 0 && img(i,j,2) - img(i,j,3) > 20
+        if img(i,j,1) - img(i,j,2) >= 11 && img(i,j,1) - img(i,j,3) <= 0 && img(i,j,2) - img(i,j,3) <= 20
             % 보라색으로 판단되는 경우
             img3(i, j, 1) = 255;
             img3(i, j, 2) = 0;
             img3(i, j, 3) = 255;
-            color_pixel = color_pixel + 1;  % 보라색 픽셀의 개수를 증가
+            purplePixelCount = purplePixelCount + 1;
+            purplePixels = [purplePixels; [i, j]];
         else
             img3(i, j, 1) = 0;
             img3(i, j, 2) = 0;
@@ -852,8 +850,30 @@ for i = 1:R
         end
     end
 end
-figure(4);
-imshow(img3);
-disp(color_pixel);
+
+% 보라색 픽셀의 중심 좌표 계산
+if purplePixelCount > 0
+    centerX = mean(purplePixels(:, 2));
+    centerY = mean(purplePixels(:, 1));
+else
+    centerX = NaN;
+    centerY = NaN;
+    disp('보라색 네모를 찾을 수 없습니다.');
+end
+
+% 결과 시각화
+figure;
+imshow(uint8(img3));
+hold on;
+if ~isnan(centerX) && ~isnan(centerY)
+    plot(centerX, centerY, 'g+', 'MarkerSize', 30, 'LineWidth', 2);
+    title('보라색 네모의 중심 좌표');
+end
+hold off;
+
+% 중심 좌표 출력
+fprintf('보라색 네모의 중심 좌표: (%.2f, %.2f)\n', centerX, centerY);
+
+
 end
 ```
