@@ -26,7 +26,9 @@
 ## 대회에서 주어진 조건
 먼저 대회에서 공지된 대회장의 규격은 아래 사진과 같다.   
 
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/953e1c5e-4c76-4d96-8004-d34188ed83d8" alt="image" width="550"/><img src="https://github.com/202020882/drone_the_bit/assets/127501452/296b7656-9489-4262-956d-06b97e281047" alt="image" width="350"/>
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/953e1c5e-4c76-4d96-8004-d34188ed83d8" alt="image" width="550"/>
+   
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/296b7656-9489-4262-956d-06b97e281047" alt="image" width="350"/>
 
 
 
