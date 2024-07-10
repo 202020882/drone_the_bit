@@ -461,7 +461,10 @@ turn(drone, deg2rad(130));
         break;
     end
 end
+```
+2stage와 3stage의 경우, dis 값이 크게 나는 경우가 존재하였고, 이는 드론의 비행 시간을 크게 증가시키는 문제를 야기하였다. 따라서 이를 줄이기 위한 대비책은 드론이 상하좌우로 움직이는 거리와 속도를 증가시켰다. 사소한 차이지만 드론이 상하좌우로 움직이는 횟수를 줄일 수 있었고, 이는 측정 기록의 20초를 줄일 수 있었다.
 
+```
 frame = snapshot(cam);
 colorcenter = processImage_R_a(frame); % 링의 앞에서 붉은색 타겟의 중점 찾음
 dis_c = colorcenter - center;
