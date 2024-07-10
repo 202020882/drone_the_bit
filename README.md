@@ -122,7 +122,7 @@ stage 별로 구성을 설명하면 다음과 같다.
 
 ### 드론 객체의 안정성 유지
    
-아래의 코드 설명에서 확인할 수 있겠지만 드론이 움직인 다음에 ```puase(1.0)```이 포함되어있는 것을 확인할 수 있을 것이다. 이는 드론이 움직인 후에, 관성과 가속력으로 인해 더 나아가는 것을 방지하기 위해 작성하였다.   
+아래의 코드 설명에서 확인할 수 있겠지만 드론이 움직인 다음에 ```pause(1.0)```이 포함되어있는 것을 확인할 수 있을 것이다. 이는 드론이 움직인 후에, 관성과 가속력으로 인해 더 나아가는 것을 방지하기 위해 작성하였다.   
     
 이와 마찬가지 이유로 속도값도 조정하였다. 반복적인 과정을 통해 확인한 결과, 0.8을 넘어가면 확률적으로 예상한 결과와의 오차가 더 자주, 크게 발생하였다.
 
@@ -279,9 +279,7 @@ while 1
 
 원의 둘레와 면적을 계산하고 이를 바탕으로 원형 지표를 구하여 임계값보다 큰 경우, 이를 붉은 색 텍스트로 중심 좌표로 표시한다. 
 
-
-   
-(이를 바탕으로 나오는 이미지)   
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/04434d65-aa95-4746-9b0a-57969731afdc" alt="image" width="400"/>  
 
 
 #### 드론 이동
@@ -464,7 +462,28 @@ turn(drone, deg2rad(130));
     end
 end
 
-turn(drone, deg2rad(-130));
+frame = snapshot(cam);
+colorcenter = processImage_R_a(frame); % 링의 앞에서 붉은색 타겟의 중점 찾음
+dis_c = colorcenter - center;
+count_a = 0; % 각도 조정 횟수 변수
+% 각도 조정을 통해 붉은색 타겟의 중점과 원의 중심을 일치
+while abs(dis_c(1)) > 30
+    frame = snapshot(cam);
+    colorcenter = processImage_R_a(frame);
+    dis_c = colorcenter - center;
+    if dis_c(1)>0
+        turn(drone, deg2rad(5));
+        count_a = count_a + 1;
+    else
+        turn(drone, deg2rad(-5));
+        count_a = count_a - 1;
+    end
+end
+moveforward(drone, 'Distance', 2.3, 'Speed', 1.0);
+pause(0.5);
+
+
+turn(drone, deg2rad(130 - count_a * 5));
 count_go = 0;
 count = 0;
 
