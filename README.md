@@ -148,6 +148,7 @@ stage 별로 구성을 설명하면 다음과 같다.
 
 ## 1st stage   
 <img src="https://github.com/202020882/drone_the_bit/assets/127501452/9e434eb1-8d86-486c-a18a-92c3dfb8ef26" alt="image" width="500"/>   
+   
 드론 이륙 후, 효율적인 원 감지를 위해 0.3m만큼 위로 상승한다.    
    
 사진 촬영 후 조건에 따라 이미지를 이진화 한 후, 이진화 된 이미지에서 원의 중심과 면적의 넓이를 계산한다.    
@@ -561,6 +562,9 @@ end
  
 
 <img src="https://github.com/202020882/drone_the_bit/assets/127501452/00e786a1-5c70-49bb-9bf2-ca06192cec98" alt="image" width="400"/><img src="https://github.com/202020882/drone_the_bit/assets/127501452/3c7fcc1f-0370-498f-b25c-5f89f1385eb6" alt="image" width="400"/>
+
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/128130f4-ed4c-43cb-96fb-8f2ddfdd5447" alt="image" width="400"/>
+
 
 
 ```matlab
