@@ -25,7 +25,8 @@
 
 ## 대회에서 주어진 조건
 먼저 대회에서 공지된 대회장의 규격은 아래 사진과 같다.   
-![image](https://github.com/202020882/drone_the_bit/assets/127501452/953e1c5e-4c76-4d96-8004-d34188ed83d8)
+
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/953e1c5e-4c76-4d96-8004-d34188ed83d8" alt="image" width="600"/>
 
 
 
@@ -67,9 +68,7 @@ stage 별로 구성을 설명하면 다음과 같다.
 <img src="https://github.com/202020882/drone_the_bit/assets/127501452/86e071f0-cd4a-42d4-ab9c-cc55c40fcd89" width="300"/>   
 
 
-[1번 case가 실행된 경우의 사진]   
-
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/89558be3-c4db-49a6-a729-df47169b2540" alt="image" width="300"/>
+[1번 case가 실행된 경우의 사진] <img src="https://github.com/202020882/drone_the_bit/assets/127501452/89558be3-c4db-49a6-a729-df47169b2540" alt="image" width="300"/>
 
 
 [4번 case가 실행된 경우의 사진] 
@@ -161,8 +160,8 @@ stage 별로 구성을 설명하면 다음과 같다.
 
 
 ## 2nd stage
-![image](https://github.com/202020882/drone_the_bit/assets/127501452/9627ac80-dff6-4bd4-9201-4ab397ca08e1)
-
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/9627ac80-dff6-4bd4-9201-4ab397ca08e1" alt="image" width="500"/>   
+   
 2stage에 진입하기 위해 드론을 약간 전진시킨 뒤 1stage와 마찬가지로 드론을 이용한 사진 촬영 후 원의 중심과 면적의 넓이를 계산한다.    
    
 원의 중심과 촬영한 원의 중심을 비교한 뒤 40픽셀 이하일 경우 원의 중심에 위치한다 판단하여 원의 넓이에 따라 전진한다.    
@@ -173,7 +172,8 @@ stage 별로 구성을 설명하면 다음과 같다.
 
    
 ## 3rd stage
-![image](https://github.com/202020882/drone_the_bit/assets/127501452/d4ab209c-9b23-4d19-b509-78d649c2ad20)
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/d4ab209c-9b23-4d19-b509-78d649c2ad20" alt="image" width="500"/>   
+
 
 3stage에 진입하기 위해 드론을 약간 전진시킨 뒤 위 stage와 마찬가지로 원의 중심과 면적의 넓이를 계산한다.   
    
@@ -184,7 +184,8 @@ stage 별로 구성을 설명하면 다음과 같다.
 링의 앞으로 전진 한 뒤 색상 타겟을 인식하여 드론이 색상 타겟의 중심에 위치하도록 1stage와 같은 원리로 각도를 조정한다. 그 후 조정한 각도를 고려하여 다음 stage의 타겟을 바라볼 수 있도록 드론을 회전 시킨다.
 
 ## 4th stage
-![image](https://github.com/202020882/drone_the_bit/assets/127501452/2546f32f-3584-4589-9fa5-6e70db65d49d)
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/2546f32f-3584-4589-9fa5-6e70db65d49d" alt="image" width="500"/>   
+   
 
 4stage에 진입하기 위해 드론을 약간 전진시킨 뒤 위 stage와 마찬가지로 원의 중심과 면적의 넓이를 계산한다.   
 
