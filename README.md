@@ -368,25 +368,13 @@ while 1
    
 위에서 언급한 것처럼 드론이 인식한 원의 면적에 따라 가림막과 드론 사이의 거리가 다르기 때문에, 조건문을 통해 드론이 가야하는 거리를 다르게 설정하였다. 드론이 앞으로 이동한 경우, ```count_go```변수를 1로 초기화하였고 이는 앞으로 간 것을 판단하는 변수이다.
    
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/258b4ce7-0b69-4190-a143-7571e1c34864" alt="image" width="200"/>[1 stage의 4번째 case]
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/258b4ce7-0b69-4190-a143-7571e1c34864" alt="image" width="200"/>[1 stage의 4번째 case] <img src="https://github.com/202020882/drone_the_bit/assets/127501452/5e510d81-1c12-4ff8-9ced-e3061a35096a" alt="image" width="200"/>[2 stage의 -1번째 case]
 
 
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/5e510d81-1c12-4ff8-9ced-e3061a35096a" alt="image" width="200"/>[2 stage의 -1번째 case]
-
-
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/4999d91f-2270-4961-b869-516c9a05195f" alt="image" width="200"/>[3 stage의 -1번째 case]
-
-
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/4e144497-75e3-4cf8-bd45-1b903414caf8" alt="image" width="200"/>[3 stage의 -1번째 case]
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/4999d91f-2270-4961-b869-516c9a05195f" alt="image" width="200"/>[3 stage의 -1번째 case] <img src="https://github.com/202020882/drone_the_bit/assets/127501452/4e144497-75e3-4cf8-bd45-1b903414caf8" alt="image" width="200"/>[3 stage의 -1번째 case]
 
 
 
-
-
-
-   
-   
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/9d4e4d9a-d86f-464b-a818-3a2d3bcc7a06" alt="image" width="400"/>
 
 ```matlab
     else
@@ -444,14 +432,14 @@ turn(drone, deg2rad(130));
 
 ```   
    
-앞서 전역 변수와 코드에서 찾은 중앙값을 비교하여 33보다 작은 경우, 색을 인식하는 코드를 실행하였다. 그러나 33보다 큰 경우라면 중점을 찾지 못한 것으로 인식하고 드론의 위치를 조정할 필요가 있다. 따라서 이 경우에 추가적인 조건문을 생성하여 중점을 찾는 과정을 반복하도록 설정하였다.   
+앞서 전역 변수와 코드에서 찾은 중앙값을 비교하여 33보다 작은 경우, 색을 인식하는 코드를 실행하였다. 그러나 33보다 큰 경우라면 중점을 찾지 못한 것으로 인식하고 드론의 위치를 조정할 필요가 있다. 따라서 이 경우에 추가적인 조건문을 생성하여 중점을 찾는 과정을 반복하도록 설정하였다.    
 
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/9d4e4d9a-d86f-464b-a818-3a2d3bcc7a06" alt="image" width="400"/>
 
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/000263fd-ed29-4690-b778-d856f6a05d34" alt="image" width="400"/>
+   
+원의 영역을 나누어서 표시하면 위와 같은 그림으로 나타낼 수 있다. 즉 출력되는 이미지에서의 원의 위치가 좌측에 있으면 오른쪽으로 이동하는 문구가 출력되고, 우측에 있으면 왼쪽으로 이동하는 문구가 출력된다. 위아래도 원리는 동일하다. 
 
-
-
-위의 그림처럼 
+그러나 2 stage에서나 3 stage에서 가림막으로 나아가는 이동 거리가 부족하거나 넘치는 경우, 다음 스테이지에서 시간적인 소비가 많이 발생한다. 이는 원의 중점을 찾기 위해 반복되는 횟수가 많기 때문이다. 비행 시간을 줄이기 위해 추가적인 조건을 생성했다.
 
 
 
@@ -489,7 +477,11 @@ turn(drone, deg2rad(130));
     end
 end
 ```
-2stage와 3stage의 경우, dis 값이 크게 나는 경우가 존재하였고, 이는 드론의 비행 시간을 크게 증가시키는 문제를 야기하였다. 따라서 이를 줄이기 위한 대비책은 드론이 상하좌우로 움직이는 거리와 속도를 증가시켰다. 사소한 차이지만 드론이 상하좌우로 움직이는 횟수를 줄일 수 있었고, 이는 측정 기록의 20초를 줄일 수 있었다.
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/000263fd-ed29-4690-b778-d856f6a05d34" alt="image" width="400"/>
+   
+
+ 따라서 이를 줄이기 위한 대비책으로 추가적인 조건을 통해 드론이 상하좌우로 움직이는 거리와 속도를 증가시켰다. 사소한 차이지만 드론이 상하좌우로 움직이는 횟수를 줄이는 효과를 발생시키고 이를 통해 전체 시간을 줄일 수 있었다.
+
 
 ```matlab
 frame = snapshot(cam);
