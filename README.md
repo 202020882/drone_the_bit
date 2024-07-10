@@ -164,23 +164,26 @@ stage 별로 구성을 설명하면 다음과 같다.
 
 알고리즘 설명
 ==========
-(전체 순서도)
-
+전체적인 알고리즘에 대한 설명은 순서도를 첨부하여 설명한다.   
 
 ## 1st stage   
-(1st stage 순서도)
+![image](https://github.com/202020882/drone_the_bit/assets/127501452/9e434eb1-8d86-486c-a18a-92c3dfb8ef26)
+
 
 
 ## 2nd stage
-(2nd stage 순서도)
+![image](https://github.com/202020882/drone_the_bit/assets/127501452/9627ac80-dff6-4bd4-9201-4ab397ca08e1)
+
 
 
 ## 3rd stage
-(3rd stage 순서도)
+![image](https://github.com/202020882/drone_the_bit/assets/127501452/d4ab209c-9b23-4d19-b509-78d649c2ad20)
+
 
 
 ## 4th stage
-(4th stage 순서도)
+![image](https://github.com/202020882/drone_the_bit/assets/127501452/2546f32f-3584-4589-9fa5-6e70db65d49d)
+
 
 
 
