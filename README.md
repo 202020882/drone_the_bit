@@ -543,7 +543,7 @@ end
 이는 빨간색을 인식하는 함수이다. 이미지를 인식하고 RGB 조건을 통해 빨간색을 인식하지 않는 부분은 검정색으로 바꿔서 저장한다. 빨간색으로 인식한 픽셀 수가 0보다 크면 mean 함수를 통해 중심 좌표를 계산한다. 결과를 출력할 때는, 중심 좌표를 초록색의 x자 표시를 통해 표시한다.
  
 
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/00e786a1-5c70-49bb-9bf2-ca06192cec98" alt="image" width="400"/>
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/00e786a1-5c70-49bb-9bf2-ca06192cec98" alt="image" width="400"/><img src="https://github.com/202020882/drone_the_bit/assets/127501452/3c7fcc1f-0370-498f-b25c-5f89f1385eb6" alt="image" width="400"/>
 
 
 ```
