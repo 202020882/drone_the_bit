@@ -64,12 +64,12 @@ stage 별로 구성을 설명하면 다음과 같다.
 ## 최적화된 원의 면적 계산 및 중심 인식
 ### 원의 면적
 
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/89558be3-c4db-49a6-a729-df47169b2540" alt="image" width="300"/>
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/86e071f0-cd4a-42d4-ab9c-cc55c40fcd89" width="300"/>   
 
 
 [1번 case가 실행된 경우의 사진]   
 
-<img src="https://github.com/202020882/drone_the_bit/assets/127501452/86e071f0-cd4a-42d4-ab9c-cc55c40fcd89" width="300"/>   
+<img src="https://github.com/202020882/drone_the_bit/assets/127501452/89558be3-c4db-49a6-a729-df47169b2540" alt="image" width="300"/>
 
 
 [4번 case가 실행된 경우의 사진] 
@@ -119,7 +119,7 @@ stage 별로 구성을 설명하면 다음과 같다.
 위에서 언급한 것과 같이 stage마다 진행 방식이 다르기 때문에, stage별로 다른 전략도 존재한다.   
    
 + 1 stage
-  - 원의 중심을 올바르게 인식하기 위하여 첫 이륙 후, 드론을 대각선(x축, z축)으로 이동   
+  - 원의 중심을 올바르게 인식하기 위하여 첫 이륙 후, 드론은 한 번 더 위로 이동   
   - 중점을 찾고 상하좌우 조정 후에 색 인식   
   - 원을 통과하여 색 앞으로 이동 후 회전   
 
@@ -169,7 +169,7 @@ stage 별로 구성을 설명하면 다음과 같다.
 
 소스 코드 설명
 ===========
-```
+```matlab
 %메인문 
 
 count_go = 0;  % 전진한 횟수를 세주는 변수
@@ -182,6 +182,9 @@ color_pixel = 0; % 색 감지 변수
 drone = ryze();  % 드론 객체 선언
 cam = camera(drone);  % 드론의 카메라 객체 선언
 takeoff(drone);  % 드론 이륙
+moveup(drone, 'Distance', 0.3, 'Speed', 0.2);
+pause(1.0);
+
 ```   
 변수를 초기화하고 드론 객체와 카메라 객체를 선언하였고, 위에서 언급한 것처럼 기준 중심의 위치를 480,200으로 선언하였다.    
 ```count_go``` 변수는 드론이 앞으로 진행했는지 여부를 확인하는 변수이다. 0이면 진행하지 않은 것이고 1이면 앞으로 나아간 것으로 판단한다.   
@@ -190,14 +193,9 @@ takeoff(drone);  % 드론 이륙
 ```centroid```변수는 측정한 중심 값을 저장하는 변수이다.
 ```count```는 상하좌우의 이동 횟수를 저장하는 변수이다.
 
-```
-move(drone, [-0.3 0 -0.3],"Speed",0.2); % 드론 x방향 z방향으로 -만큼 이동
-pause(1.0);
-```   
-드론이 이륙한 자리에서 이미지를 인식하고 원을 정확하게 인식하기 어렵다고 판단하였다. 초반 설계 시에는 한 번 더 위로 상승하고 뒤로 움직이도록 코드를 설계하였으나 전체적인 시간을 줄이기 위해 대각선으로 움직이도록 설계하였다. 
 
 #### 가림막 인식
-```
+```matlab
 while 1
     frame = snapshot(cam);  % 카메라로부터 이미지 캡처
     img = double(frame);  % 이미지를 double 형으로 변환
@@ -220,7 +218,7 @@ while 1
 이는 푸른색 가림막을 인식하고 푸른색 부분은 흰색으로 나머지 부분은 검정색으로 변환하여 저장한다. 
    
 #### 원의 중심과 면적
-```
+```matlab
     % 이진화된 이미지에서 원의 중심과 면적을 찾음
     circle_ring = img2 / 255;
     circle_ring_Gray = rgb2gray(circle_ring);
@@ -247,7 +245,7 @@ while 1
 먼저 이미지를 0과 255 사이의 값을 0과 1로 정규화하고, 그레이 스케일로 바꾼다. 이를 다시 이진화하여 보수하는 과정을 거쳐서 픽셀이 8000 이하의 작은 객체는 제거하고 남은 객체의 경계선을 찾는다. 이에 대한 이미지를 출력하는 부분에서는 경계를 하얀색 선을 추가하여 보다 더 정확하게 판단할 수 있도록 설계하였다.
    
 
-```
+```matlab
     % 원의 면적과 중심 좌표를 계산
     stats = regionprops(L, 'Area', 'Centroid');
     threshold = 0.7;
@@ -276,7 +274,7 @@ while 1
 
 
 #### 드론 이동
-```
+```matlab
 
     % 드론의 이동 결정
     dis = centroid - center;
@@ -343,7 +341,7 @@ while 1
    
 <img src="https://github.com/202020882/drone_the_bit/assets/127501452/9d4e4d9a-d86f-464b-a818-3a2d3bcc7a06" alt="image" width="400"/>
 
-```
+```matlab
     else
         while 1
             if dis(1) > 0 && abs(dis(1)) > 33 && dis(2) < 33
@@ -410,7 +408,7 @@ turn(drone, deg2rad(130));
 
 
 
-```
+```matlab
 
         % 드론이 원의 중심과 멀리 떨어져 있을 경우
     elseif dis(1) > 0 && abs(dis(1)) > 200 && dis(2) < 40
@@ -446,7 +444,7 @@ end
 ```
 2stage와 3stage의 경우, dis 값이 크게 나는 경우가 존재하였고, 이는 드론의 비행 시간을 크게 증가시키는 문제를 야기하였다. 따라서 이를 줄이기 위한 대비책은 드론이 상하좌우로 움직이는 거리와 속도를 증가시켰다. 사소한 차이지만 드론이 상하좌우로 움직이는 횟수를 줄일 수 있었고, 이는 측정 기록의 20초를 줄일 수 있었다.
 
-```
+```matlab
 frame = snapshot(cam);
 colorcenter = processImage_R_a(frame); % 링의 앞에서 붉은색 타겟의 중점 찾음
 dis_c = colorcenter - center;
@@ -475,7 +473,7 @@ count = 0;
 ```
 색상의 앞까지 이동하기 전에 색깔을 인식하고 색깔의 중점을 반환하는 사용자 정의 함수를 실행하여 앞서 전역 변수로 설정한 기준 중심과 비교한다. 비교한 값이 30보다 크고 ```dis_c(1)```이 양수이면 드론이 색깔의 좌측을 바라보고 있는 것이므로 색깔을 바라볼 수 있도록 5도씩 우측으로 회전한다. 계속 반복하여 30보다 작아지면 반복문을 종료하고 색상의 앞으로 이동한다. 다음 스테이지로 넘어가기 위해 회전하는 각도는 앞서 측정한 횟수에서 빼거나 더하면서 각도를 조정하도록 설계하였다.
 
-```
+```matlab
 function [centerX, centerY] = processImage_R_a(frame)
 
 % 이미지 읽기
@@ -540,7 +538,7 @@ end
 <img src="https://github.com/202020882/drone_the_bit/assets/127501452/00e786a1-5c70-49bb-9bf2-ca06192cec98" alt="image" width="400"/><img src="https://github.com/202020882/drone_the_bit/assets/127501452/3c7fcc1f-0370-498f-b25c-5f89f1385eb6" alt="image" width="400"/>
 
 
-```
+```matlab
 
 
 % 초록색 이미지 처리 함수
@@ -607,7 +605,7 @@ end
 
 <img src="https://github.com/202020882/drone_the_bit/assets/127501452/a0fd3073-1aa4-4066-af12-5d21f8b3e844" alt="image" width="400"/>
 
-```
+```matlab
 
 function [centerX, centerY] = processImage_P(frame)
 
