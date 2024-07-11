@@ -210,7 +210,7 @@ while 1
     img2 = zeros(R, C, X);
     for i = 1:R
         for j = 1:C
-            if img(i, j, 1) - img(i, j, 2) > -5 || img(i, j, 1) - img(i, j, 3) > -5 || img(i, j, 2) - img(i, j, 3) > -40
+            if img(i, j, 1) - img(i, j, 2) > -0 || img(i, j, 1) - img(i, j, 3) > -0 || img(i, j, 2) - img(i, j, 3) > -30
                 img2(i, j, :) = 255;
             else
                 img2(i, j, :) = 0;
