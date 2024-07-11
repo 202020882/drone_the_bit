@@ -729,57 +729,57 @@ while 1
 
         % 드론을 앞으로 이동
         if 30000 <= area_circle && area_circle < 40000
-            moveforward(drone, 'Distance', 1.6, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.65, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(-1);
         elseif 40000 <= area_circle && area_circle < 50000
-            moveforward(drone, 'Distance', 1.55, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.6, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(0);
         elseif 50000 <= area_circle && area_circle < 60000
-            moveforward(drone, 'Distance', 1.5, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.55, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(1);
         elseif 60000 <= area_circle && area_circle < 70000
-            moveforward(drone, 'Distance', 1.45, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.5, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(2);
         elseif 70000 <= area_circle && area_circle < 85000
-            moveforward(drone, 'Distance', 1.4, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.45, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(3);
         elseif 85000 <= area_circle && area_circle < 100000
-            moveforward(drone, 'Distance', 1.35, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.4, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(4);
         elseif 100000 <= area_circle && area_circle < 130000
-            moveforward(drone, 'Distance', 1.4, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.35, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(5);
         elseif 130000 <= area_circle && area_circle < 160000
-            moveforward(drone, 'Distance', 1.35, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.3, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(6);
         elseif 160000 <= area_circle && area_circle < 200000
-            moveforward(drone, 'Distance', 1.3, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.25, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(7);
         elseif 200000 <= area_circle
-            moveforward(drone, 'Distance', 1.25, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.2, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(8);
         else
-            moveforward(drone, 'Distance', 1.65, 'Speed', 0.7);
+            moveforward(drone, 'Distance', 1.7, 'Speed', 0.7);
             count_go = 1;
             pause(1.0);
             disp(12);
